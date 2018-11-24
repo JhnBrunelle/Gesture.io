@@ -6,8 +6,10 @@ import urllib2 as urlLib
 # A multi-class decision forest was used to achieve an average accuracy of 97%
 class Classifier:
 	def __init__(self):
-		self.requestUrl = "temp"
-		self.requestKey = "bpIKZqSLL170VeU9Ml5dros6SyEHP/7f4tVod5aqe00mZ+x8yVAWfKFGJNiuYMVl8jDV8NVOZcufh2ZLX8F7cQ=="
+		workspace = "db7b645d6af645e2940bac7cee56ef86"
+		service = 	"646f5ca30c81426f9dda9c4faa464613"
+		self.requestUrl = "https://ussouthcentral.services.azureml.net/workspaces/" + workspace + "/services/" + service + "/execute?api-version=2.0&details=true"
+		self.requestKey = "++gVydBoiijKZpyJT1BwzbWHtij+mIJxvctPk1AHHhxs6Rk2JHd38Qp9voIcKG5SsPJtPxVPnzr+fm9f/q0c4w=="
 		self.requestHeaders = {'Content-Type':'application/json', 'Authorization':('Bearer '+ self.requestKey)}
 
 	# Takes the leap motion data and formats as a json message
@@ -29,7 +31,7 @@ class Classifier:
 
 	# Used example code from azure, https://docs.microsoft.com/en-us/azure/machine-learning/studio/manage-web-service-endpoints-using-api-management
 	def webRequest(self):
-		self.requestBody = str.encode(json.dumps(data))
+		self.requestBody = str.encode(json.dumps(self.dataToJson))
 		# Trying to request the data
 		try:
 			request = urlLib.Request(self.requestUrl, self.requestBody, self.requestHeaders)

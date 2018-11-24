@@ -14,7 +14,7 @@ def main():
 	result = leapClassifier.webRequest()
 
 	# Call tts service
-	tts.textToSpeech(result)
+	# tts.textToSpeech(result)
 
 if __name__ == "__main__":
 	main()
