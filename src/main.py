@@ -87,6 +87,7 @@ def getDataFromLeap(controller):
 				data.append(str(bone.center[1]))
 				data.append(str(bone.center[2]))
 
+	data.append("")
 	return data
 
 
@@ -96,7 +97,7 @@ def getDataFromLeap(controller):
 def main():
 
 	# Create leap classifier object
-	leapClassifier = Classifier()
+	leapClassifier = classifier.Classifier()
 
 	
 
@@ -112,7 +113,9 @@ def main():
 	while 1:
 		userInput = raw_input("Please enter the letter gestured:\n\n");
 		
-		dataObtained = getDataFromLeap(controller);
+		leapdatainput = getDataFromLeap(controller);
+
+		print(len(leapdatainput))
 		
 		#TODO: Create source for leap data input
 		# Input the leap data to format for web request
