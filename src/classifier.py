@@ -7,9 +7,9 @@ import urllib2 as urlLib
 class Classifier:
 	def __init__(self):
 		self.workspace = "db7b645d6af645e2940bac7cee56ef86"
-		self.service = 	"646f5ca30c81426f9dda9c4faa464613"
+		self.service = 	"fb12684fd6f4406d8828d813646ff718"
 		self.requestUrl = "https://ussouthcentral.services.azureml.net/workspaces/" + self.workspace + "/services/" + self.service + "/execute?api-version=2.0&details=true"
-		self.requestKey = "++gVydBoiijKZpyJT1BwzbWHtij+mIJxvctPk1AHHhxs6Rk2JHd38Qp9voIcKG5SsPJtPxVPnzr+fm9f/q0c4w=="
+		self.requestKey = "oRAtwvWmdXSopFXNaNzmi4DXbWH3py9hy45M3WgmJZl/PEIyl6PCUhqU42Gszfot70LgOr09HeAK1Q0BHWhg5w=="
 		self.requestHeaders = {'Content-Type':'application/json', 'Authorization':('Bearer '+ self.requestKey)}
 
 	# Takes the leap motion data and formats as a json message
