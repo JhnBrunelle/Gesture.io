@@ -101,8 +101,6 @@ class SampleListener(Leap.Listener):
 					data.append(str(bone.center[1]))
 					data.append(str(bone.center[2]))
 
-		data.append("")
-
 		if len(data)>20:
 
 			data[27] = "0"
