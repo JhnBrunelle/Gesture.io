@@ -27,8 +27,11 @@ def getDataFromLeap(controller):
 
 	frame = controller.frame()
 
-	data.append(str(len(frame.hands)))
-	data.append(str(len(frame.fingers)))
+	data.append("1")
+	data.append("5")
+
+
+
 
 			# Get hands
 	for hand in frame.hands:
@@ -88,6 +91,8 @@ def getDataFromLeap(controller):
 				data.append(str(bone.center[2]))
 
 	data.append("")
+	
+	
 	return data
 
 
@@ -115,6 +120,14 @@ def main():
 		
 		leapdatainput = getDataFromLeap(controller);
 
+		if len(leapdatainput) < 200:
+			print("Wait for intialization\n")
+			continue
+
+		leapdatainput[27] = "0"
+		leapdatainput[28] = "0"
+		leapdatainput[29] = "0"
+
 		print(len(leapdatainput))
 		
 		#TODO: Create source for leap data input
@@ -122,7 +135,7 @@ def main():
 		leapClassifier.getLeapDataJson(leapdatainput)
 
 		# Make the actual web request
-		leapClassifier.webRequest()
+		receivedChar = leapClassifier.webRequest()
 
 	
 

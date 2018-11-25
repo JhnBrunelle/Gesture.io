@@ -34,18 +34,24 @@ class Classifier:
 		self.requestBody = str.encode(json.dumps(self.dataToJson))
 		# Trying to request the data
 
-		print(self.requestBody)
+		#print(self.requestBody)
 		try:
 			request = urlLib.Request(self.requestUrl, self.requestBody, self.requestHeaders)
 			response = urlLib.urlopen(request)
 			resultFromRequest = response.read()
-			print "Result:" + resultFromRequest
+			#print "Result:" + resultFromRequest
 
 			resultsInJSON = json.loads(resultFromRequest)
-			print resultsInJSON
+
+			predictedLetter = resultsInJSON["Results"]["output1"]["value"]["Values"][0][-1];
+			print predictedLetter
+			confidence = resultsInJSON["Results"]["output1"]["value"]["Values"][0][-2];
+			print confidence
+			#print resultsInJSON
 
 			# TODO: Take JSON and extract the values we need 
 			# return letter and confidence
+			return predictedLetter
 
 		except urlLib.HTTPError, error:
 			print("The request failed with status code: " + str(error.code))
