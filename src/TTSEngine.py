@@ -4,7 +4,7 @@ import tempfile
 import gtts
 from playsound import playsound
 import threading
-import pyttsx3
+#import pyttsx3
 from multiprocessing import Process, Queue
 import urllib2
 
@@ -36,12 +36,12 @@ def googleTTS(phrase,lang="en"):
 
 
 # Offline TTS that is used as a backup. It's also faster!
-def offlineTTS(phrase):
+# def offlineTTS(phrase):
 
-	# Offline TTS, stops parent process
-	offlineTTS = pyttsx3.init()
-	offlineTTS.say(phrase)
-	offlineTTS.runAndWait()
+# 	# Offline TTS, stops parent process
+# 	offlineTTS = pyttsx3.init()
+# 	offlineTTS.say(phrase)
+# 	offlineTTS.runAndWait()
 
 
 # Multithreaded say function, designed to not block
@@ -49,11 +49,11 @@ def offlineTTS(phrase):
 def say(phrase, lang, offline=False):
 
 	# Check connection 
-	offline = offline or checkOffline()
+	offline = False
 
 	if offline == True:
 		print("Offline")
-		offlineTTS(phrase)
+		# offlineTTS(phrase)
 		# t = threading.Thread(name='googs', target=offlineTTS, args=[phrase])
 	else:
 		print("Online")
@@ -66,7 +66,7 @@ def say(phrase, lang, offline=False):
 if __name__ == '__main__':
 
 	# Offline TTS
-	offlineTTS("This is an Offline Test")
+	# offlineTTS("This is an Offline Test")
 	googleTTS("This is an Online Test", "en")
 	say("This is a test of the say method", "en")
 
