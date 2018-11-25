@@ -1,15 +1,17 @@
 import classifier
 #Here, we are writing functions used to obtain data from the leap motion sensor and store it in an object
 
+import Voice
+
 import os, sys, inspect, thread, time
 
 data = []
 
 src_dir = os.path.dirname(inspect.getfile(inspect.currentframe()))
 # Windows and Linux
-arch_dir = '../lib/x64' if sys.maxsize > 2**32 else '../lib/x86'
+#arch_dir = '../lib/x64' if sys.maxsize > 2**32 else '../lib/x86'
 # Mac
-#arch_dir = os.path.abspath(os.path.join(src_dir, '../lib'))
+arch_dir = os.path.abspath(os.path.join(src_dir, '../lib'))
 
 sys.path.insert(0, os.path.abspath(os.path.join(src_dir, arch_dir)))
 
@@ -209,8 +211,11 @@ def main():
 	#Asynchronous process, so we need to wait for process to complete before reading frame data.
 	controller = Leap.Controller()
 
+	speechObject = Voice.Voice()
+
 	# Have the sample listener receive events from the controller by adding the listener object to the controller
 	controller.add_listener(listener)
+
 
 	while 1:
 		userInput = raw_input("Please enter the letter gestured:\n\n");
@@ -226,7 +231,15 @@ def main():
 		# Make the actual web request
 		receivedChar = leapClassifier.webRequest()
 
-		time.sleep(5)
+		if receivedChar == '%':
+			break
+
+		speechObject.addChar(receivedChar)
+
+
+		time.sleep(1)
+
+	speechObject.speak()
 
 	
 

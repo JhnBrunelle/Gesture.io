@@ -64,7 +64,7 @@ def _swig_getattr_nondynamic(self, class_type, name, static=1):
     if method:
         return method(self)
     if (not static):
-        return object.__getattr__(self, name)
+        return object.__getattribute__(self, name)
     else:
         raise AttributeError(name)
 
